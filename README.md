@@ -112,6 +112,15 @@ docker run -it --rm --name python -v $(pwd):/app -p 8000:8000 python-polls-fast-
 bash に入ったら、
 
 ```
-# poetry shell
-# uvicorn main:app --reload --host 0.0.0.0
+poetry shell
 ```
+```
+uvicorn main:app --reload --host 0.0.0.0
+```
+
+# TODO
+
+- [ ] multi-stage build する
+  - [Use multi-stage builds | Docker Documentation](https://docs.docker.com/develop/develop-images/multistage-build/)
+  - [Document docker poetry best practices · Discussion #1879 · python-poetry/poetry](https://github.com/python-poetry/poetry/discussions/1879)
+    - 実際に multi-stage build で Dockerfile 書いている人たちの poetry スレッド

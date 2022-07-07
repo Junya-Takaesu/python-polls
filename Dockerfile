@@ -3,6 +3,7 @@ FROM python:3.9.0
 ARG work_dir
 WORKDIR ${work_dir}
 
+# Add a path where poetry is installed
 ENV PATH=/root/.local/bin:${PATH}
 
 # Install poetry
