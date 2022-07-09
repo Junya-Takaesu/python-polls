@@ -5,7 +5,7 @@
 - github リポジトリ
   - [gwenf/python-polls](https://github.com/gwenf/python-polls)
 
-# docker run だけでやろうとする
+# docker run だけでやろうとする 🙅
 ## Python の仮想環境作成
 
 ```bash
@@ -41,7 +41,7 @@ docker run -it --rm --name python -v $(pwd):/app --workdir /app python:3.9.0 bas
 docker run -it --rm --name python -v $(pwd):/app -p 8000:8000 --workdir /app python:3.9.0 bash -c  "source venv/bin/activate && uvicorn main:app --reload --host 0.0.0.0"
 ```
 
-# docker run だけだと 限界・・・なので Dockerfile を使う
+# docker run だけだと 限界・・・なので Dockerfile を使う 🙅
 
 ## build
 
@@ -118,9 +118,21 @@ poetry shell
 uvicorn main:app --reload --host 0.0.0.0
 ```
 
+# 最終的には 💯
+- docker-compose.yml を使った
+- python 環境の web.Dockerfile を作った
+  - pyton イメージに poetry をインストール、依存パッケージをインストールするようにした
+- 参考担った stack overflow
+  - [Integrating Python Poetry with Docker - Stack Overflow](https://stackoverflow.com/questions/53835198/integrating-python-poetry-with-docker)
+
 # TODO
 
-- [ ] multi-stage build する
+- [x] multi-stage build する
   - [Use multi-stage builds | Docker Documentation](https://docs.docker.com/develop/develop-images/multistage-build/)
   - [Document docker poetry best practices · Discussion #1879 · python-poetry/poetry](https://github.com/python-poetry/poetry/discussions/1879)
     - 実際に multi-stage build で Dockerfile 書いている人たちの poetry スレッド
+  - ヒント⚠️
+    - poetry shell や、virtualenv の activate が実際にやっていることは、python のライブラリがある場所を $PATH に追加しているだけ
+    - [Elegantly activating a virtualenv in a Dockerfile](https://pythonspeed.com/articles/activate-virtualenv-dockerfile/)
+  - multi-stage build しなくても良かった
+    - poetry の virtualenv を作らない設定にして、poetry install するだけ
