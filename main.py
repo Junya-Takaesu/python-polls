@@ -15,17 +15,16 @@ class User(BaseModel):
 """
 title
 type: ChoiceField (e.g. text or image)
-created_by
-created_at
-updated_at
 is_add_choices_active
 is_voting_active
+created_by
 """
 class Poll(BaseModel):
     title: str
     type: str
     is_add_choices_active: bool
     is_voting_active: bool
+    created_by: int
 
 @app.get("/")
 async def root():
