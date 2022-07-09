@@ -33,6 +33,6 @@ def upgrade() -> None:
         sa.Column('updated_at', sa.DateTime, nullable=False),
     )
 
-
 def downgrade() -> None:
-    op.drop_table('polls');
+    op.drop_table('polls')
+    op.execute("DROP TYPE polltype")
